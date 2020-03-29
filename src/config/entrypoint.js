@@ -1,1 +1,1 @@
-export const ENTRYPOINT = 'http://bookshop.localhost/api';
+export const ENTRYPOINT = 'http://bookshop.localhost/api'

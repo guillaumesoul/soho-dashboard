@@ -11,8 +11,10 @@ import Vue from 'vue'
 import VueAnalytics from 'vue-analytics'
 import Router from 'vue-router'
 import Meta from 'vue-meta'
+import store from '../store'
 
 // Routes
+import security from './security'
 import paths from './paths'
 import tacheRoutes from './tache'
 
@@ -33,7 +35,8 @@ const router = new Router({
   mode: 'history',
   routes: paths.map(path => route(path.path, path.view, path.name)).concat([
     { path: '*', redirect: '/' },
-    tacheRoutes
+    tacheRoutes,
+    security
   ]),
   scrollBehavior (to, from, savedPosition) {
     if (savedPosition) {
@@ -46,12 +49,23 @@ const router = new Router({
   }
 })
 
+router.beforeEach((to, from, next) => {
+  console.log(store.getters.isAuthenticated)
+  console.log(to.name)
+  if (!store.getters.isAuthenticated && to.name != 'login') {
+    console.log('alorts')
+    next('/login')
+  } else {
+    next()
+  }
+})
+
 Vue.use(Meta)
 
 // Bootstrap Analytics
 // Set in .env
 // https://github.com/MatteoGabriele/vue-analytics
-if (process.env.GOOGLE_ANALYTICS) {
+/*if (process.env.GOOGLE_ANALYTICS) {
   Vue.use(VueAnalytics, {
     id: process.env.GOOGLE_ANALYTICS,
     router,
@@ -59,6 +73,6 @@ if (process.env.GOOGLE_ANALYTICS) {
       page: process.env.NODE_ENV !== 'development'
     }
   })
-}
+}*/
 
 export default router

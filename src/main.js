@@ -12,6 +12,8 @@ sync(store, router)
 
 Vue.config.productionTip = false
 
+Vue.use(Vuelidate);
+
 new Vue({
   i18n,
   router,

@@ -11,7 +11,7 @@
             @blur="$v.item.name.$touch()"
           />
         </v-col>
-      
+
         <v-col cols="12" sm="6" md="6">
           <v-text-field
             v-model="item.description"
@@ -22,7 +22,7 @@
           />
         </v-col>
       </v-row>
-      
+
       <v-row>
         <!-- todo : fix the dateTime format, not supported by default on vuetify -->
         <v-col cols="12" sm="6" md="6">
@@ -32,22 +32,8 @@
             :error-messages="dateCreationErrors"
           />
         </v-col>
-      
-        <v-col cols="12" sm="6" md="6">
-          <v-combobox
-            v-model="item.userTaches"
-            :items="userTachesSelectItems"
-            :error-messages="userTachesErrors"
-            :no-data-text="$t('No results')"
-            :label="$t('userTaches')"
-            multiple
-            item-text="name"
-            item-value="@id"
-            chips
-          />
-        </v-col>
       </v-row>
-      
+
     </v-container>
   </v-form>
 </template>
@@ -84,20 +70,15 @@ export default {
     }
   },
   mounted() {
-      this.userTachesGetSelectItems();
   },
   data() {
     return {
         name: null,
         description: null,
-        dateCreation: null,
-        userTaches: null,
+        dateCreation: null
     };
   },
   computed: {
-      ...mapFields('usertache', {
-        userTachesSelectItems: 'selectItems'
-      }),
 
     // eslint-disable-next-line
     item() {
@@ -134,25 +115,12 @@ export default {
 
       return errors;
     },
-    userTachesErrors() {
-      const errors = [];
-
-      if (!this.$v.item.userTaches.$dirty) return errors;
-
-      has(this.violations, 'userTaches') && errors.push(this.violations.userTaches);
-
-
-      return errors;
-    },
 
     violations() {
       return this.errors || {};
     }
   },
   methods: {
-      ...mapActions({
-        userTachesGetSelectItems: 'usertache/fetchSelectItems'
-      }),
   },
   validations: {
     item: {
@@ -162,9 +130,7 @@ export default {
       },
       dateCreation: {
         date,
-      },
-      userTaches: {
-      },
+      }
     }
   }
 };

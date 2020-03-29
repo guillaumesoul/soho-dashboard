@@ -121,10 +121,13 @@
           icon: 'mdi-bell',
           text: 'Notifications'
         }
-      ]
+      ],
+      inputValue: null,
+      color: 'success',
+      image: 'https://demos.creative-tim.com/vue-material-dashboard/img/sidebar-2.32103624.jpg'
     }),
 
-    computed: {
+    /*computed: {
       ...mapState('app', ['image', 'color']),
       inputValue: {
         get () {
@@ -134,7 +137,7 @@
           this.setDrawer(val)
         }
       }
-    },
+    },*/
 
     methods: {
       ...mapMutations('app', ['setDrawer', 'toggleDrawer'])
