@@ -130,9 +130,9 @@
     },
 
     methods: {
-      ...mapMutations('app', ['setDrawer', 'toggleDrawer']),
+      ...mapMutations('dashboard', ['setDrawer', 'toggleDrawer']),
       onClick () {
-        this.setDrawer(!this.$store.state.app.drawer)
+        this.setDrawer(!this.$store.state.dashboard.drawer)
       },
       onResponsiveInverted () {
         if (window.innerWidth < 991) {

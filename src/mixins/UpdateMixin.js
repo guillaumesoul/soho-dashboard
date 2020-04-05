@@ -1,18 +1,18 @@
-import NotificationMixin from './NotificationMixin';
-import { formatDateTime } from '../utils/dates';
+import NotificationMixin from './NotificationMixin'
+import { formatDateTime } from '../utils/dates'
 
 export default {
   mixins: [NotificationMixin],
-  data() {
+  data () {
     return {
       item: {}
-    };
+    }
   },
-  created() {
+  created () {
     this.retrieve(decodeURIComponent(this.$route.params.id));
   },
-  beforeDestroy() {
-    this.reset();
+  beforeDestroy () {
+    this.reset()
   },
   computed: {
     retrieved() {
