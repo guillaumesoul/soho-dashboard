@@ -1,12 +1,12 @@
 <template>
   <v-app>
-    <core-app-bar />
+    <core-app-bar v-if="isAuthenticated"/>
 
-    <core-drawer />
+    <core-drawer v-if="isAuthenticated"/>
 
     <core-view />
 
-    <core-footer />
+    <core-footer v-if="isAuthenticated"/>
   </v-app>
 </template>
 
@@ -17,6 +17,11 @@
       CoreFooter: () => import('@/components/core/Footer'),
       CoreAppBar: () => import('@/components/core/AppBar'),
       CoreView: () => import('@/components/core/View')
+    },
+    computed: {
+      isAuthenticated () {
+        return this.$store.getters.isAuthenticated
+      }
     }
   }
 </script>

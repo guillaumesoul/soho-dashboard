@@ -24,7 +24,6 @@ import crud from './modules/crud'
 import notification from './modules/notifications'
 import mutationmod from './modules/app/mutations'
 import statemod from './modules/app/state'
-//import security from './security'
 
 Vue.use(Vuex)
 
@@ -54,11 +53,12 @@ store.registerModule(
   makeCrudModule({
     service: tacheService
   })
-);
+)
 
 /*store.registerModule(
-  'notifications',
-  notifications
-);*/
+  'security',
+  security
+)*/
+
 
 export default store

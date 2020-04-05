@@ -5,10 +5,10 @@ const AUTH_LOGOUT = "AUTH_LOGOUT";
 const USER_REQUEST = "USER_REQUEST";
 
 import axios from 'axios';
-import { BACKEND_URL } from '../../config/entrypoint';
+import { BACKEND_URL_LOGIN } from '../../config/entrypoint';
 
 export default {
-  namespaced: true,
+  namespaced: false,
   state: {
     token: localStorage.getItem('user-token') || '',
     status: '',
@@ -37,7 +37,7 @@ export default {
       return new Promise((resolve, reject) => {
         commit(AUTH_REQUEST);
         axios
-          .post(BACKEND_URL+'login', {
+          .post(BACKEND_URL_LOGIN, {
             email: user.email,
             password: user.password
           })

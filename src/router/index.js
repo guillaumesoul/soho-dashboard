@@ -50,10 +50,7 @@ const router = new Router({
 })
 
 router.beforeEach((to, from, next) => {
-  console.log(store.getters.isAuthenticated)
-  console.log(to.name)
   if (!store.getters.isAuthenticated && to.name != 'login') {
-    console.log('alorts')
     next('/login')
   } else {
     next()
