@@ -28,7 +28,7 @@
       </v-list-item-avatar>
 
       <v-list-item-title class="title">
-        VUETIFY MD
+        SOHO
       </v-list-item-title>
     </v-list-item>
 
@@ -76,55 +76,33 @@
           text: 'Dashboard'
         },
         {
-          to: '/user-profile',
-          icon: 'mdi-account',
-          text: 'User Profile'
+          to: '/taches',
+          icon: 'mdi-checkbox-multiple-marked-outline',
+          text: 'Taches'
         },
         {
-          to: '/table-list',
-          icon: 'mdi-clipboard-outline',
-          text: 'Table List'
+          to: '/taches',
+          icon: 'mdi-one-up',
+          text: 'Taches'
         },
-        {
-          to: '/typography',
-          icon: 'mdi-format-font',
-          text: 'Typography'
-        },
-        {
-          to: '/icons',
-          icon: 'mdi-chart-bubble',
-          text: 'Icons'
-        },
-        {
-          to: '/maps',
-          icon: 'mdi-map-marker',
-          text: 'Maps'
-        },
-        {
-          to: '/notifications',
-          icon: 'mdi-bell',
-          text: 'Notifications'
-        }
-      ],
-      inputValue: null,
-      color: 'success',
-      image: 'https://demos.creative-tim.com/vue-material-dashboard/img/sidebar-2.32103624.jpg'
+
+      ]
     }),
 
-    /*computed: {
-      ...mapState('app', ['image', 'color']),
+    computed: {
+      ...mapState('dashboard', ['image', 'color']),
       inputValue: {
         get () {
-          return this.$store.state.app.drawer
+          return this.$store.state.dashboard.drawer
         },
         set (val) {
           this.setDrawer(val)
         }
       }
-    },*/
+    },
 
     methods: {
-      ...mapMutations('app', ['setDrawer', 'toggleDrawer'])
+      ...mapMutations('dashboard', ['setDrawer', 'toggleDrawer'])
     }
   }
 </script>

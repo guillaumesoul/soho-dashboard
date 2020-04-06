@@ -33,15 +33,6 @@
           hide-details
         />
 
-        <v-btn
-          icon
-          to="/"
-        >
-          <v-icon color="tertiary">
-            mdi-view-dashboard
-          </v-icon>
-        </v-btn>
-
         <v-menu
           bottom
           left
@@ -83,14 +74,34 @@
           </v-card>
         </v-menu>
 
-        <v-btn
-          to="/user-profile"
-          icon
+        <v-menu
+          left
+          bottom
+          :open-on-hover="true"
         >
-          <v-icon color="tertiary">
-            mdi-account
-          </v-icon>
-        </v-btn>
+          <template v-slot:activator="{ on }">
+            <v-btn icon v-on="on">
+              <v-icon color="tertiary">mdi-account</v-icon>
+            </v-btn>
+          </template>
+
+          <v-list>
+            <v-list-item
+              :key="1"
+              @click="() => {}"
+            >
+              <v-list-item-title>Profile </v-list-item-title>
+            </v-list-item>
+            <v-list-item
+              :key="2"
+              @click="logout"
+            >
+              <v-list-item-title>Déconnexion </v-list-item-title>
+            </v-list-item>
+
+          </v-list>
+        </v-menu>
+
       </v-row>
     </v-toolbar-items>
   </v-app-bar>
@@ -111,7 +122,7 @@
         'Another Notification',
         'Another One'
       ],
-      title: null,
+      title: 'titre',
       responsive: false
     }),
 
@@ -140,7 +151,10 @@
         } else {
           this.responsive = false
         }
-      }
+      },
+      ...mapMutations({
+        logout: 'AUTH_LOGOUT' // map `this.add()` to `this.$store.commit('increment')`
+      })
     }
   }
 </script>

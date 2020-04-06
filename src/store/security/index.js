@@ -7,6 +7,8 @@ const USER_REQUEST = "USER_REQUEST";
 import axios from 'axios';
 import { BACKEND_URL_LOGIN } from '../../config/entrypoint';
 
+import router from '../../router'
+
 export default {
   namespaced: false,
   state: {
@@ -30,6 +32,8 @@ export default {
     },
     [AUTH_LOGOUT]: (state) => {
       state.token = ''
+      localStorage.removeItem('user-token');
+      router.push('/login')
     },
   },
   actions: {

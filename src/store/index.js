@@ -5,7 +5,7 @@ import Vuex from 'vuex'
 // Store functionality
 import notifications from './modules/notifications'
 import tacheService from './../services/tache'
-import makeCrudModule from './modules/crud'
+import makeCrudModule from './crud'
 import security from './security'
 import dashboard from './dashboard'
 
