@@ -5,7 +5,7 @@
       :handle-reset="resetForm"
       :handle-delete="del"
     />
-    <UserTacheForm
+    <JeuxDeLaVieCategoryForm
       ref="updateForm"
       v-if="item"
       :values="item"
@@ -18,37 +18,37 @@
 <script>
 import { mapActions, mapGetters } from 'vuex';
 import { mapFields } from 'vuex-map-fields';
-import UserTacheForm from '../../components/usertache/Form.vue';
+import JeuxDeLaVieCategoryForm from '../../components/jeuxdelaviecategory/Form.vue';
 import Loading from '../../components/Loading';
 import Toolbar from '../../components/Toolbar';
 import UpdateMixin from '../../mixins/UpdateMixin';
 
-const servicePrefix = 'UserTache';
+const servicePrefix = 'JeuxDeLaVieCategory';
 
 export default {
-  name: 'UserTacheUpdate',
+  name: 'JeuxDeLaVieCategoryUpdate',
   servicePrefix,
   mixins: [UpdateMixin],
   components: {
     Loading,
     Toolbar,
-    UserTacheForm
+    JeuxDeLaVieCategoryForm
   },
 
   computed: {
-    ...mapFields('usertache', {
+    ...mapFields('jeuxdelaviecategory', {
       deleteLoading: 'isLoading',
       isLoading: 'isLoading',
       error: 'error',
       updated: 'updated',
       violations: 'violations'
     }),
-    ...mapGetters('usertache', ['find'])
+    ...mapGetters('jeuxdelaviecategory', ['find'])
 
   },
 
   methods: {
-    ...mapActions('usertache', {
+    ...mapActions('jeuxdelaviecategory', {
       deleteItem: 'del',
       retrieve: 'load',
       update: 'update',

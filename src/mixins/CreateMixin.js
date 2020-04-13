@@ -1,41 +1,41 @@
-import NotificationMixin from './NotificationMixin';
-import { formatDateTime } from '../utils/dates';
+import NotificationMixin from './NotificationMixin'
+import { formatDateTime } from '../utils/dates'
 
 export default {
   mixins: [NotificationMixin],
   methods: {
     formatDateTime,
-    onCreated(item) {
-      this.showMessage(`${item['@id']} created`);
+    onCreated (item) {
+      this.showMessage(`${item['@id']} created`)
 
       this.$router.push({
         name: `${this.$options.servicePrefix}Update`,
         params: { id: item['@id'] }
-      });
+      })
     },
-    onSendForm() {
-      const createForm = this.$refs.createForm;
-      createForm.$v.$touch();
+    onSendForm () {
+      const createForm = this.$refs.createForm
+      createForm.$v.$touch()
       if (!createForm.$v.$invalid) {
-        this.create(createForm.$v.item.$model);
+        this.create(createForm.$v.item.$model)
       }
     },
-    resetForm() {
-      this.$refs.createForm.$v.$reset();
-      this.item = {};
+    resetForm () {
+      this.$refs.createForm.$v.$reset()
+      this.item = {}
     }
   },
   watch: {
-    created(created) {
+    created (created) {
       if (!created) {
-        return;
+        return
       }
 
-      this.onCreated(created);
+      this.onCreated(created)
     },
 
-    error(message) {
-      message && this.showError(message);
+    error (message) {
+      message && this.showError(message)
     }
   }
-};
+}

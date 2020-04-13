@@ -3,9 +3,10 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 
 // Store functionality
-import notifications from './modules/notifications'
-import tacheService from './../services/tache'
 import makeCrudModule from './crud'
+import notifications from './modules/notifications'
+import jeuxdelavietacheService from './../services/jeuxdelavietache'
+import jeuxdelaviecategoryService from '../services/jeuxdelaviecategory'
 import security from './security'
 import dashboard from './dashboard'
 
@@ -21,9 +22,15 @@ const store = new Vuex.Store({
 })
 
 store.registerModule(
-  'tache',
+  'jeuxdelavietache',
   makeCrudModule({
-    service: tacheService
+    service: jeuxdelavietacheService
+  })
+)
+store.registerModule(
+  'jeuxdelaviecategory',
+  makeCrudModule({
+    service: jeuxdelaviecategoryService
   })
 )
 

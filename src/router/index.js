@@ -16,7 +16,8 @@ import store from '../store'
 // Routes
 import security from './security'
 import paths from './paths'
-import tacheRoutes from './tache'
+import jeuxdelavietacheRoutes from './jeuxdelavietache'
+import jeuxdelaviecategoryRoutes from './jeuxdelaviecategory'
 
 function route (path, view, name) {
   return {
@@ -35,7 +36,8 @@ const router = new Router({
   mode: 'history',
   routes: paths.map(path => route(path.path, path.view, path.name)).concat([
     { path: '*', redirect: '/' },
-    tacheRoutes,
+    jeuxdelavietacheRoutes,
+    jeuxdelaviecategoryRoutes,
     security
   ]),
   scrollBehavior (to, from, savedPosition) {
@@ -58,6 +60,5 @@ router.beforeEach((to, from, next) => {
 })
 
 Vue.use(Meta)
-
 
 export default router

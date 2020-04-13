@@ -6,7 +6,7 @@
 <script>
 
 export default {
-  name: 'UserTacheFilter',
+  name: 'JeuxDeLaVieCategoryFilter',
   props: {
     values: {
       type: Object,

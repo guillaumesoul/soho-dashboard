@@ -10,7 +10,7 @@
 
     <br />
 
-    <div v-if="item" class="table-tache-show">
+    <div v-if="item" class="table-jeuxdelavietache-show">
       <v-simple-table>
         <template slot="default">
           <thead>
@@ -29,6 +29,16 @@
                                     {{ item['name'] }}
               </td>
             
+              <td><strong>{{ $t('dateCreation') }}</strong></td>
+              <td>
+                {{ formatDateTime(item['dateCreation'], 'long') }}              </td>
+            </tr>
+            
+            <tr>
+              <td><strong>{{ $t('difficulty') }}</strong></td>
+              <td>
+                {{ $n(item['difficulty']) }}              </td>
+            
               <td><strong>{{ $t('description') }}</strong></td>
               <td>
                                     {{ item['description'] }}
@@ -36,14 +46,12 @@
             </tr>
             
             <tr>
-              <td><strong>{{ $t('dateCreation') }}</strong></td>
+              <td><strong>{{ $t('category') }}</strong></td>
               <td>
-                {{ formatDateTime(item['dateCreation'], 'long') }}              </td>
-            
-              <td><strong>{{ $t('userTaches') }}</strong></td>
-              <td>
-                                    {{ item['userTaches'].name }}
+                                    {{ item['category'].name }}
               </td>
+            
+              <td></td>
             </tr>
             
           </tbody>
@@ -62,10 +70,10 @@ import Loading from '../../components/Loading';
 import ShowMixin from '../../mixins/ShowMixin';
 import Toolbar from '../../components/Toolbar';
 
-const servicePrefix = 'Tache';
+const servicePrefix = 'JeuxDeLaVieTache';
 
 export default {
-  name: 'TacheShow',
+  name: 'JeuxDeLaVieTacheShow',
   servicePrefix,
   components: {
       Loading,
@@ -73,13 +81,13 @@ export default {
   },
   mixins: [ShowMixin],
   computed: {
-    ...mapFields('tache', {
+    ...mapFields('jeuxdelavietache', {
       isLoading: 'isLoading'
     }),
-    ...mapGetters('tache', ['find'])
+    ...mapGetters('jeuxdelavietache', ['find'])
   },
   methods: {
-    ...mapActions('tache', {
+    ...mapActions('jeuxdelavietache', {
       deleteItem: 'del',
       reset: 'reset',
       retrieve: 'load'

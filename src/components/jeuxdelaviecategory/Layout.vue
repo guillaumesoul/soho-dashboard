@@ -4,6 +4,6 @@
 
 <script>
   export default {
-      name: 'TacheLayout'
+      name: 'JeuxDeLaVieCategoryLayout'
   }
 </script>

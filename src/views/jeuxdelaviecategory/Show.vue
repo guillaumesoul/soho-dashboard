@@ -10,7 +10,7 @@
 
     <br />
 
-    <div v-if="item" class="table-usertache-show">
+    <div v-if="item" class="table-jeuxdelaviecategory-show">
       <v-simple-table>
         <template slot="default">
           <thead>
@@ -24,31 +24,9 @@
           </thead>
           <tbody>
             <tr>
-              <td><strong>{{ $t('user') }}</strong></td>
+              <td><strong>{{ $t('name') }}</strong></td>
               <td>
-                                    {{ item['user'].name }}
-              </td>
-            
-              <td><strong>{{ $t('tache') }}</strong></td>
-              <td>
-                                    {{ item['tache'].name }}
-              </td>
-            </tr>
-            
-            <tr>
-              <td><strong>{{ $t('date') }}</strong></td>
-              <td>
-                {{ formatDateTime(item['date'], 'long') }}              </td>
-            
-              <td><strong>{{ $t('duration') }}</strong></td>
-              <td>
-                {{ $n(item['duration']) }}              </td>
-            </tr>
-            
-            <tr>
-              <td><strong>{{ $t('comment') }}</strong></td>
-              <td>
-                                    {{ item['comment'] }}
+                                    {{ item['name'] }}
               </td>
             
               <td></td>
@@ -70,10 +48,10 @@ import Loading from '../../components/Loading';
 import ShowMixin from '../../mixins/ShowMixin';
 import Toolbar from '../../components/Toolbar';
 
-const servicePrefix = 'UserTache';
+const servicePrefix = 'JeuxDeLaVieCategory';
 
 export default {
-  name: 'UserTacheShow',
+  name: 'JeuxDeLaVieCategoryShow',
   servicePrefix,
   components: {
       Loading,
@@ -81,13 +59,13 @@ export default {
   },
   mixins: [ShowMixin],
   computed: {
-    ...mapFields('usertache', {
+    ...mapFields('jeuxdelaviecategory', {
       isLoading: 'isLoading'
     }),
-    ...mapGetters('usertache', ['find'])
+    ...mapGetters('jeuxdelaviecategory', ['find'])
   },
   methods: {
-    ...mapActions('usertache', {
+    ...mapActions('jeuxdelaviecategory', {
       deleteItem: 'del',
       reset: 'reset',
       retrieve: 'load'

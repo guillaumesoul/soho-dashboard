@@ -1,15 +1,15 @@
 <template>
-  <div class="usertache-list">
+  <div class="jeuxdelaviecategory-list">
     <Toolbar :handle-add="addHandler" />
 
     <v-container grid-list-xl fluid>
       <v-layout row wrap>
         <v-flex sm12>
-          <h1>UserTache List</h1>
+          <h1>JeuxDeLaVieCategory List</h1>
         </v-flex>
         <v-flex lg12>
           <DataFilter :handle-filter="onSendFilter" :handle-reset="resetFilter">
-            <UserTacheFilterForm
+            <JeuxDeLaVieCategoryFilterForm
               ref="filterForm"
               :values="filters"
               slot="filter"
@@ -32,12 +32,6 @@
             show-select
             @update:options="onUpdateOptions"
           >
-                <template slot="item.date" slot-scope="{ item }">
-                  {{ formatDateTime(item['date'], 'long') }}
-                </template>
-                <template slot="item.duration" slot-scope="{ item }">
-                  {{ $n(item['duration']) }}
-                </template>
 
             <ActionCell
               slot="item.action"
@@ -58,28 +52,24 @@ import { mapActions, mapGetters } from 'vuex';
 import { mapFields } from 'vuex-map-fields';
 import ListMixin from '../../mixins/ListMixin';
 import ActionCell from '../../components/ActionCell';
-import UserTacheFilterForm from '../../components/usertache/Filter';
+import JeuxDeLaVieCategoryFilterForm from '../../components/jeuxdelaviecategory/Filter';
 import DataFilter from '../../components/DataFilter';
 import Toolbar from '../../components/Toolbar';
 
 export default {
-  name: 'UserTacheList',
-  servicePrefix: 'UserTache',
+  name: 'JeuxDeLaVieCategoryList',
+  servicePrefix: 'JeuxDeLaVieCategory',
   mixins: [ListMixin],
   components: {
     Toolbar,
     ActionCell,
-    UserTacheFilterForm,
+    JeuxDeLaVieCategoryFilterForm,
     DataFilter
   },
   data() {
     return {
       headers: [
-        { text: 'user', value: 'user' },
-        { text: 'tache', value: 'tache' },
-        { text: 'date', value: 'date' },
-        { text: 'duration', value: 'duration' },
-        { text: 'comment', value: 'comment' },
+        { text: 'name', value: 'name' },
         {
           text: 'Actions',
           value: 'action',
@@ -90,10 +80,10 @@ export default {
     };
   },
   computed: {
-    ...mapGetters('usertache', {
+    ...mapGetters('jeuxdelaviecategory', {
       items: 'list'
     }),
-    ...mapFields('usertache', {
+    ...mapFields('jeuxdelaviecategory', {
       deletedItem: 'deleted',
       error: 'error',
       isLoading: 'isLoading',
@@ -103,7 +93,7 @@ export default {
     })
   },
   methods: {
-    ...mapActions('usertache', {
+    ...mapActions('jeuxdelaviecategory', {
       getPage: 'fetchAll',
       deleteItem: 'del'
     })

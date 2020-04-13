@@ -6,7 +6,7 @@
 <script>
 
 export default {
-  name: 'TestFilter',
+  name: 'JeuxDeLaVieTacheFilter',
   props: {
     values: {
       type: Object,

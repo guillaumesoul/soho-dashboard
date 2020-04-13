@@ -1,15 +1,15 @@
 <template>
-  <div class="tache-list">
+  <div class="jeuxdelavietache-list">
     <Toolbar :handle-add="addHandler" />
 
     <v-container grid-list-xl fluid>
       <v-layout row wrap>
         <v-flex sm12>
-          <h1>Tache List</h1>
+          <h1>JeuxDeLaVieTache List</h1>
         </v-flex>
         <v-flex lg12>
           <DataFilter :handle-filter="onSendFilter" :handle-reset="resetFilter">
-            <TacheFilterForm
+            <JeuxDeLaVieTacheFilterForm
               ref="filterForm"
               :values="filters"
               slot="filter"
@@ -35,12 +35,8 @@
                 <template slot="item.dateCreation" slot-scope="{ item }">
                   {{ formatDateTime(item['dateCreation'], 'long') }}
                 </template>
-                <template slot="item.userTaches" slot-scope="{ item }">
-                  <ul>
-                    <li v-for="_item in item['userTaches']" :key="_item.id">
-                      {{ _item.id }}
-                    </li>
-                  </ul>
+                <template slot="item.difficulty" slot-scope="{ item }">
+                  {{ $n(item['difficulty']) }}
                 </template>
 
             <ActionCell
@@ -62,27 +58,28 @@ import { mapActions, mapGetters } from 'vuex';
 import { mapFields } from 'vuex-map-fields';
 import ListMixin from '../../mixins/ListMixin';
 import ActionCell from '../../components/ActionCell';
-import TacheFilterForm from '../../components/tache/Filter';
+import JeuxDeLaVieTacheFilterForm from '../../components/jeuxdelavietache/Filter';
 import DataFilter from '../../components/DataFilter';
 import Toolbar from '../../components/Toolbar';
 
 export default {
-  name: 'TacheList',
-  servicePrefix: 'Tache',
+  name: 'JeuxDeLaVieTacheList',
+  servicePrefix: 'JeuxDeLaVieTache',
   mixins: [ListMixin],
   components: {
     Toolbar,
     ActionCell,
-    TacheFilterForm,
+    JeuxDeLaVieTacheFilterForm,
     DataFilter
   },
   data() {
     return {
       headers: [
         { text: 'name', value: 'name' },
-        { text: 'description', value: 'description' },
         { text: 'dateCreation', value: 'dateCreation' },
-        { text: 'userTaches', value: 'userTaches' },
+        { text: 'difficulty', value: 'difficulty' },
+        { text: 'description', value: 'description' },
+        { text: 'category', value: 'category' },
         {
           text: 'Actions',
           value: 'action',
@@ -93,10 +90,10 @@ export default {
     };
   },
   computed: {
-    ...mapGetters('tache', {
+    ...mapGetters('jeuxdelavietache', {
       items: 'list'
     }),
-    ...mapFields('tache', {
+    ...mapFields('jeuxdelavietache', {
       deletedItem: 'deleted',
       error: 'error',
       isLoading: 'isLoading',
@@ -106,7 +103,7 @@ export default {
     })
   },
   methods: {
-    ...mapActions('tache', {
+    ...mapActions('jeuxdelavietache', {
       getPage: 'fetchAll',
       deleteItem: 'del'
     })

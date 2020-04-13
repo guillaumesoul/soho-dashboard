@@ -5,7 +5,7 @@
       :handle-reset="resetForm"
       :handle-delete="del"
     />
-    <TacheForm
+    <JeuxDeLaVieTacheForm
       ref="updateForm"
       v-if="item"
       :values="item"
@@ -18,37 +18,37 @@
 <script>
 import { mapActions, mapGetters } from 'vuex';
 import { mapFields } from 'vuex-map-fields';
-import TacheForm from '../../components/tache/Form.vue';
+import JeuxDeLaVieTacheForm from '../../components/jeuxdelavietache/Form.vue';
 import Loading from '../../components/Loading';
 import Toolbar from '../../components/Toolbar';
 import UpdateMixin from '../../mixins/UpdateMixin';
 
-const servicePrefix = 'Tache';
+const servicePrefix = 'JeuxDeLaVieTache';
 
 export default {
-  name: 'TacheUpdate',
+  name: 'JeuxDeLaVieTacheUpdate',
   servicePrefix,
   mixins: [UpdateMixin],
   components: {
     Loading,
     Toolbar,
-    TacheForm
+    JeuxDeLaVieTacheForm
   },
 
   computed: {
-    ...mapFields('tache', {
+    ...mapFields('jeuxdelavietache', {
       deleteLoading: 'isLoading',
       isLoading: 'isLoading',
       error: 'error',
       updated: 'updated',
       violations: 'violations'
     }),
-    ...mapGetters('tache', ['find'])
+    ...mapGetters('jeuxdelavietache', ['find'])
 
   },
 
   methods: {
-    ...mapActions('tache', {
+    ...mapActions('jeuxdelavietache', {
       deleteItem: 'del',
       retrieve: 'load',
       update: 'update',
