@@ -16,22 +16,15 @@ const store = new Vuex.Store({
   modules: {
     notifications,
     security,
-    dashboard
+    dashboard,
+    jeuxdelavietache: makeCrudModule({
+      service: jeuxdelavietacheService
+    }),
+    jeuxdelaviecategory: makeCrudModule({
+      service: jeuxdelaviecategoryService
+    })
   },
   strict: process.env.NODE_ENV !== 'production'
 })
-
-store.registerModule(
-  'jeuxdelavietache',
-  makeCrudModule({
-    service: jeuxdelavietacheService
-  })
-)
-store.registerModule(
-  'jeuxdelaviecategory',
-  makeCrudModule({
-    service: jeuxdelaviecategoryService
-  })
-)
 
 export default store
