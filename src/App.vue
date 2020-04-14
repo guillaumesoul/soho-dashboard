@@ -1,5 +1,6 @@
 <template>
   <v-app>
+    <snackbar></snackbar>
     <core-app-bar v-if="isAuthenticated"/>
 
     <core-drawer v-if="isAuthenticated"/>
@@ -13,7 +14,8 @@
     components: {
       CoreDrawer: () => import('@/components/core/Drawer'),
       CoreAppBar: () => import('@/components/core/AppBar'),
-      CoreView: () => import('@/components/core/View')
+      CoreView: () => import('@/components/core/View'),
+      Snackbar: () => import('@/components/Snackbar')
     },
     computed: {
       isAuthenticated () {

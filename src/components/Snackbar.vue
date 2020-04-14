@@ -4,29 +4,35 @@
     :color="color"
     :multi-line="true"
     :timeout="timeout"
-    right
     top
   >
     {{ text }}
     <template v-if="subText">
       <p>{{ subText }}</p>
     </template>
-    <v-btn dark text @click.native="close">{{ $t('Close') }}</v-btn>
+    <v-btn
+      icon
+      @click="show = false"
+    >
+      <v-icon>
+        mdi-close-circle
+      </v-icon>
+    </v-btn>
   </v-snackbar>
 </template>
 
 <script>
-import { mapFields } from 'vuex-map-fields';
+  import { mapFields } from 'vuex-map-fields'
 
-export default {
-  computed: {
-    ...mapFields('notifications', ['color', 'show', 'subText', 'text', 'timeout'])
-  },
+  export default {
+    computed: {
+      ...mapFields('notifications', ['color', 'show', 'subText', 'text', 'timeout'])
+    },
 
-  methods: {
-    close() {
-      this.show = false;
+    methods: {
+      close () {
+        this.show = false
+      }
     }
   }
-};
 </script>

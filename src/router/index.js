@@ -18,6 +18,7 @@ import security from './security'
 import paths from './paths'
 import jeuxdelavietacheRoutes from './jeuxdelavietache'
 import jeuxdelaviecategoryRoutes from './jeuxdelaviecategory'
+import jeuxdelavietachefaiteRoutes from './jeuxdelavietachefaite'
 
 function route (path, view, name) {
   return {
@@ -38,6 +39,7 @@ const router = new Router({
     { path: '*', redirect: '/' },
     jeuxdelavietacheRoutes,
     jeuxdelaviecategoryRoutes,
+    jeuxdelavietachefaiteRoutes,
     security
   ]),
   scrollBehavior (to, from, savedPosition) {
