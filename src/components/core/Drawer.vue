@@ -1,7 +1,7 @@
 <template>
   <v-navigation-drawer
     id="app-drawer"
-    v-model="inputValue"
+    v-model="drawer"
     :src="image"
     app
     color="grey darken-2"
@@ -90,8 +90,8 @@
     }),
 
     computed: {
-      ...mapState('dashboard', ['image', 'color']),
-      inputValue: {
+      ...mapState('dashboard', ['drawer', 'image', 'color']),
+      drawer: {
         get () {
           return this.$store.state.dashboard.drawer
         },

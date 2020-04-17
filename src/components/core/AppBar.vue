@@ -7,17 +7,21 @@
     flat
     height="88"
   >
-    <v-toolbar-title class="tertiary--text font-weight-light align-self-center">
-      <v-btn
-        v-if="responsive"
-        dark
-        icon
-        @click.stop="onClick"
-      >
-        <v-icon>mdi-view-list</v-icon>
-      </v-btn>
-      {{ title }}
-    </v-toolbar-title>
+    <v-btn
+      class="mr-3"
+      elevation="1"
+      fab
+      small
+      @click="toggleDrawer()"
+    >
+      <v-icon v-if="true">
+        mdi-menu
+      </v-icon>
+
+      <v-icon v-else>
+        mdi-dots-vertical
+      </v-icon>
+    </v-btn>
 
     <v-spacer />
 
@@ -61,17 +65,6 @@
             </v-btn>
           </template>
 
-          <v-card>
-            <v-list dense>
-              <v-list-item
-                v-for="notification in notifications"
-                :key="notification"
-                @click="onClick"
-              >
-                <v-list-item-title v-text="notification" />
-              </v-list-item>
-            </v-list>
-          </v-card>
         </v-menu>
 
         <v-menu
@@ -80,8 +73,13 @@
           :open-on-hover="true"
         >
           <template v-slot:activator="{ on }">
-            <v-btn icon v-on="on">
-              <v-icon color="tertiary">mdi-account</v-icon>
+            <v-btn
+              icon
+              v-on="on"
+            >
+              <v-icon color="tertiary">
+                mdi-account
+              </v-icon>
             </v-btn>
           </template>
 
@@ -98,10 +96,8 @@
             >
               <v-list-item-title>Déconnexion </v-list-item-title>
             </v-list-item>
-
           </v-list>
         </v-menu>
-
       </v-row>
     </v-toolbar-items>
   </v-app-bar>
@@ -110,6 +106,7 @@
 <script>
   // Utilities
   import {
+    mapState,
     mapMutations
   } from 'vuex'
 
@@ -140,11 +137,20 @@
       window.removeEventListener('resize', this.onResponsiveInverted)
     },
 
+    computed: {
+      ...mapState('dashboard', ['drawer'])
+      /*drawer: {
+        get () {
+          return this.$store.state.dashboard.drawer
+        },
+        set (val) {
+          this.setDrawer(val)
+        }
+      }*/
+    },
+
     methods: {
-      ...mapMutations('dashboard', ['setDrawer', 'toggleDrawer']),
-      onClick () {
-        this.setDrawer(!this.$store.state.dashboard.drawer)
-      },
+      ...mapMutations('dashboard', ['setDrawer', 'toggleDrawer', 'allez']),
       onResponsiveInverted () {
         if (window.innerWidth < 991) {
           this.responsive = true
