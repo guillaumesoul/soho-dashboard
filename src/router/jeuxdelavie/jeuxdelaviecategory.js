@@ -1,7 +1,7 @@
 export default {
   path: 'categories',
   name: 'jeux_de_la_vie_categories',
-  component: () => import('../../components/jeuxdelaviecategory/Layout'),
+  component: () => import('../../components/jeuxdelavie/jeuxdelaviecategory/Layout'),
   redirect: { name: 'JeuxDeLaVieCategoryList' },
   children: [
     {

@@ -18,7 +18,7 @@
 <script>
 import { mapActions, mapGetters } from 'vuex';
 import { mapFields } from 'vuex-map-fields';
-import JeuxDeLaVieTacheForm from '../../../components/jeuxdelavietache/Form.vue';
+import JeuxDeLaVieTacheForm from '../../../components/jeuxdelavie/jeuxdelavietache/Form.vue';
 import Loading from '../../../components/Loading';
 import Toolbar from '../../../components/Toolbar';
 import UpdateMixin from '../../../mixins/UpdateMixin';

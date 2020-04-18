@@ -61,7 +61,7 @@ import { mapActions, mapGetters } from 'vuex';
 import { mapFields } from 'vuex-map-fields';
 import ListMixin from '../../../mixins/ListMixin';
 import ActionCell from '../../../components/ActionCell';
-import JeuxDeLaVieTacheFaiteFilterForm from '../../../components/jeuxdelavietachefaite/Filter';
+import JeuxDeLaVieTacheFaiteFilterForm from '../../../components/jeuxdelavie/jeuxdelavietachefaite/Filter';
 import DataFilter from '../../../components/DataFilter';
 import Toolbar from '../../../components/Toolbar';
 

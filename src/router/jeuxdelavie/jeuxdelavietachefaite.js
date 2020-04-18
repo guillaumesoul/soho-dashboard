@@ -1,7 +1,7 @@
 export default {
   path: 'tache_faites',
   name: 'jeux_de_la_vie_tache_faites',
-  component: () => import('../../components/jeuxdelavietachefaite/Layout'),
+  component: () => import('../../components/jeuxdelavie/jeuxdelavietachefaite/Layout'),
   redirect: { name: 'JeuxDeLaVieTacheFaiteList' },
   children: [
     {

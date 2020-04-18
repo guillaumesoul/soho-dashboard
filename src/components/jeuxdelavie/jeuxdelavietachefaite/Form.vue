@@ -14,7 +14,7 @@
             item-value="@id"
           />
         </v-col>
-      
+
         <v-col cols="12" sm="6" md="6">
           <v-combobox
             v-model="item.user"
@@ -28,7 +28,7 @@
           />
         </v-col>
       </v-row>
-      
+
       <v-row>
         <v-col cols="12" sm="6" md="6">
           <v-text-field
@@ -39,7 +39,7 @@
             @blur="$v.item.duration.$touch()"
           />
         </v-col>
-      
+
         <!-- todo : fix the dateTime format, not supported by default on vuetify -->
         <v-col cols="12" sm="6" md="6">
           <InputDate
@@ -49,7 +49,7 @@
           />
         </v-col>
       </v-row>
-      
+
       <v-row>
         <v-col cols="12" sm="6" md="6">
           <v-text-field
@@ -60,10 +60,10 @@
             @blur="$v.item.observation.$touch()"
           />
         </v-col>
-      
+
         <v-col cols="12"></v-col>
       </v-row>
-      
+
     </v-container>
   </v-form>
 </template>
@@ -74,8 +74,8 @@ import { validationMixin } from 'vuelidate';
 import { required } from 'vuelidate/lib/validators';
 import { mapActions } from 'vuex';
 import { mapFields } from 'vuex-map-fields';
-import InputDate from '../InputDate';
-import { date } from '../../validators/date';
+import InputDate from '../../InputDate';
+import { date } from '../../../validators/date';
 
 export default {
   name: 'JeuxDeLaVieTacheFaiteForm',

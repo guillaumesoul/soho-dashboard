@@ -16,9 +16,6 @@ import store from '../store'
 // Routes
 import security from './security'
 import paths from './paths'
-import jeuxdelavietacheRoutes from './jeuxdelavie/jeuxdelavietache'
-import jeuxdelaviecategoryRoutes from './jeuxdelavie/jeuxdelaviecategory'
-import jeuxdelavietachefaiteRoutes from './jeuxdelavie/jeuxdelavietachefaite'
 import jeuxdelavieRoutes from './jeuxdelavie'
 
 function route (path, view, name) {
@@ -38,9 +35,6 @@ const router = new Router({
   mode: 'history',
   routes: paths.map(path => route(path.path, path.view, path.name)).concat([
     { path: '*', redirect: '/' },
-    /*jeuxdelavietacheRoutes,
-    jeuxdelaviecategoryRoutes,
-    jeuxdelavietachefaiteRoutes,*/
     jeuxdelavieRoutes,
     security
   ]),

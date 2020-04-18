@@ -9,7 +9,7 @@
 <script>
 import { mapActions } from 'vuex';
 import { createHelpers } from 'vuex-map-fields';
-import JeuxDeLaVieTacheFaiteForm from '../../../components/jeuxdelavietachefaite/Form';
+import JeuxDeLaVieTacheFaiteForm from '../../../components/jeuxdelavie/jeuxdelavietachefaite/Form';
 import Loading from '../../../components/Loading';
 import Toolbar from '../../../components/Toolbar';
 import CreateMixin from '../../../mixins/CreateMixin';
