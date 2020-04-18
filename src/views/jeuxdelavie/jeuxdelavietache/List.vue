@@ -1,15 +1,15 @@
 <template>
-  <div class="jeuxdelaviecategory-list">
+  <div class="jeuxdelavietache-list">
     <Toolbar :handle-add="addHandler" />
 
     <v-container grid-list-xl fluid>
       <v-layout row wrap>
         <v-flex sm12>
-          <h1>JeuxDeLaVieCategory List</h1>
+          <h1>JeuxDeLaVieTache List</h1>
         </v-flex>
         <v-flex lg12>
           <DataFilter :handle-filter="onSendFilter" :handle-reset="resetFilter">
-            <JeuxDeLaVieCategoryFilterForm
+            <JeuxDeLaVieTacheFilterForm
               ref="filterForm"
               :values="filters"
               slot="filter"
@@ -32,6 +32,12 @@
             show-select
             @update:options="onUpdateOptions"
           >
+                <template slot="item.dateCreation" slot-scope="{ item }">
+                  {{ formatDateTime(item['dateCreation'], 'long') }}
+                </template>
+                <template slot="item.difficulty" slot-scope="{ item }">
+                  {{ $n(item['difficulty']) }}
+                </template>
 
             <ActionCell
               slot="item.action"
@@ -50,26 +56,30 @@
 <script>
 import { mapActions, mapGetters } from 'vuex';
 import { mapFields } from 'vuex-map-fields';
-import ListMixin from '../../mixins/ListMixin';
-import ActionCell from '../../components/ActionCell';
-import JeuxDeLaVieCategoryFilterForm from '../../components/jeuxdelaviecategory/Filter';
-import DataFilter from '../../components/DataFilter';
-import Toolbar from '../../components/Toolbar';
+import ListMixin from '../../../mixins/ListMixin';
+import ActionCell from '../../../components/ActionCell';
+import JeuxDeLaVieTacheFilterForm from '../../../components/jeuxdelavietache/Filter';
+import DataFilter from '../../../components/DataFilter';
+import Toolbar from '../../../components/Toolbar';
 
 export default {
-  name: 'JeuxDeLaVieCategoryList',
-  servicePrefix: 'JeuxDeLaVieCategory',
+  name: 'JeuxDeLaVieTacheList',
+  servicePrefix: 'JeuxDeLaVieTache',
   mixins: [ListMixin],
   components: {
     Toolbar,
     ActionCell,
-    JeuxDeLaVieCategoryFilterForm,
+    JeuxDeLaVieTacheFilterForm,
     DataFilter
   },
   data() {
     return {
       headers: [
         { text: 'name', value: 'name' },
+        { text: 'dateCreation', value: 'dateCreation' },
+        { text: 'difficulty', value: 'difficulty' },
+        { text: 'description', value: 'description' },
+        { text: 'category', value: 'category' },
         {
           text: 'Actions',
           value: 'action',
@@ -80,10 +90,10 @@ export default {
     };
   },
   computed: {
-    ...mapGetters('jeuxdelaviecategory', {
+    ...mapGetters('jeuxdelavietache', {
       items: 'list'
     }),
-    ...mapFields('jeuxdelaviecategory', {
+    ...mapFields('jeuxdelavietache', {
       deletedItem: 'deleted',
       error: 'error',
       isLoading: 'isLoading',
@@ -93,7 +103,7 @@ export default {
     })
   },
   methods: {
-    ...mapActions('jeuxdelaviecategory', {
+    ...mapActions('jeuxdelavietache', {
       getPage: 'fetchAll',
       deleteItem: 'del'
     })

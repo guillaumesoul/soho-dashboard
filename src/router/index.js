@@ -16,9 +16,10 @@ import store from '../store'
 // Routes
 import security from './security'
 import paths from './paths'
-import jeuxdelavietacheRoutes from './jeuxdelavietache'
-import jeuxdelaviecategoryRoutes from './jeuxdelaviecategory'
-import jeuxdelavietachefaiteRoutes from './jeuxdelavietachefaite'
+import jeuxdelavietacheRoutes from './jeuxdelavie/jeuxdelavietache'
+import jeuxdelaviecategoryRoutes from './jeuxdelavie/jeuxdelaviecategory'
+import jeuxdelavietachefaiteRoutes from './jeuxdelavie/jeuxdelavietachefaite'
+import jeuxdelavieRoutes from './jeuxdelavie'
 
 function route (path, view, name) {
   return {
@@ -37,9 +38,10 @@ const router = new Router({
   mode: 'history',
   routes: paths.map(path => route(path.path, path.view, path.name)).concat([
     { path: '*', redirect: '/' },
-    jeuxdelavietacheRoutes,
+    /*jeuxdelavietacheRoutes,
     jeuxdelaviecategoryRoutes,
-    jeuxdelavietachefaiteRoutes,
+    jeuxdelavietachefaiteRoutes,*/
+    jeuxdelavieRoutes,
     security
   ]),
   scrollBehavior (to, from, savedPosition) {

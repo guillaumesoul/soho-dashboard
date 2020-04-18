@@ -5,7 +5,7 @@
       :handle-reset="resetForm"
       :handle-delete="del"
     />
-    <JeuxDeLaVieTacheForm
+    <JeuxDeLaVieCategoryForm
       ref="updateForm"
       v-if="item"
       :values="item"
@@ -18,37 +18,37 @@
 <script>
 import { mapActions, mapGetters } from 'vuex';
 import { mapFields } from 'vuex-map-fields';
-import JeuxDeLaVieTacheForm from '../../components/jeuxdelavietache/Form.vue';
-import Loading from '../../components/Loading';
-import Toolbar from '../../components/Toolbar';
-import UpdateMixin from '../../mixins/UpdateMixin';
+import JeuxDeLaVieCategoryForm from '../../../components/jeuxdelaviecategory/Form.vue';
+import Loading from '../../../components/Loading';
+import Toolbar from '../../../components/Toolbar';
+import UpdateMixin from '../../../mixins/UpdateMixin';
 
-const servicePrefix = 'JeuxDeLaVieTache';
+const servicePrefix = 'JeuxDeLaVieCategory';
 
 export default {
-  name: 'JeuxDeLaVieTacheUpdate',
+  name: 'JeuxDeLaVieCategoryUpdate',
   servicePrefix,
   mixins: [UpdateMixin],
   components: {
     Loading,
     Toolbar,
-    JeuxDeLaVieTacheForm
+    JeuxDeLaVieCategoryForm
   },
 
   computed: {
-    ...mapFields('jeuxdelavietache', {
+    ...mapFields('jeuxdelaviecategory', {
       deleteLoading: 'isLoading',
       isLoading: 'isLoading',
       error: 'error',
       updated: 'updated',
       violations: 'violations'
     }),
-    ...mapGetters('jeuxdelavietache', ['find'])
+    ...mapGetters('jeuxdelaviecategory', ['find'])
 
   },
 
   methods: {
-    ...mapActions('jeuxdelavietache', {
+    ...mapActions('jeuxdelaviecategory', {
       deleteItem: 'del',
       retrieve: 'load',
       update: 'update',

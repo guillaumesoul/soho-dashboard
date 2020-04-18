@@ -16,10 +16,10 @@
 <script>
   import { mapActions } from 'vuex'
   import { createHelpers } from 'vuex-map-fields'
-  import JeuxDeLaVieCategoryForm from '../../components/jeuxdelaviecategory/Form'
-  import Loading from '../../components/Loading'
-  import Toolbar from '../../components/Toolbar'
-  import CreateMixin from '../../mixins/CreateMixin'
+  import JeuxDeLaVieCategoryForm from '../../../components/jeuxdelaviecategory/Form'
+  import Loading from '../../../components/Loading'
+  import Toolbar from '../../../components/Toolbar'
+  import CreateMixin from '../../../mixins/CreateMixin'
 
   const servicePrefix = 'JeuxDeLaVieCategory'
 

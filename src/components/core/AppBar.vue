@@ -30,13 +30,6 @@
         align="center"
         class="mx-0"
       >
-        <v-text-field
-          class="mr-4 purple-input"
-          color="purple"
-          label="Search..."
-          hide-details
-        />
-
         <v-menu
           bottom
           left
@@ -64,7 +57,6 @@
               </v-badge>
             </v-btn>
           </template>
-
         </v-menu>
 
         <v-menu
@@ -139,14 +131,14 @@
 
     computed: {
       ...mapState('dashboard', ['drawer'])
-      /*drawer: {
+      /* drawer: {
         get () {
           return this.$store.state.dashboard.drawer
         },
         set (val) {
           this.setDrawer(val)
         }
-      }*/
+      } */
     },
 
     methods: {

@@ -76,16 +76,10 @@
           text: 'Dashboard'
         },
         {
-          to: '/taches',
-          icon: 'mdi-checkbox-multiple-marked-outline',
-          text: 'Taches'
-        },
-        {
-          to: '/taches',
+          to: '/jeux_de_la_vie',
           icon: 'mdi-one-up',
-          text: 'Taches'
+          text: 'Jeux de la vie'
         },
-
       ]
     }),
 

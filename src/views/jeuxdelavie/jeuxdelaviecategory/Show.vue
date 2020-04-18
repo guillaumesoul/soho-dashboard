@@ -28,10 +28,10 @@
               <td>
                                     {{ item['name'] }}
               </td>
-            
+
               <td></td>
             </tr>
-            
+
           </tbody>
         </template>
       </v-simple-table>
@@ -44,9 +44,9 @@
 <script>
 import { mapActions, mapGetters } from 'vuex';
 import { mapFields } from 'vuex-map-fields';
-import Loading from '../../components/Loading';
-import ShowMixin from '../../mixins/ShowMixin';
-import Toolbar from '../../components/Toolbar';
+import Loading from '../../../components/Loading';
+import ShowMixin from '../../../mixins/ShowMixin';
+import Toolbar from '../../../components/Toolbar';
 
 const servicePrefix = 'JeuxDeLaVieCategory';
 

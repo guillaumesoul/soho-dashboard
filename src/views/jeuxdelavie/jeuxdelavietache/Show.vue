@@ -28,32 +28,32 @@
               <td>
                                     {{ item['name'] }}
               </td>
-            
+
               <td><strong>{{ $t('dateCreation') }}</strong></td>
               <td>
                 {{ formatDateTime(item['dateCreation'], 'long') }}              </td>
             </tr>
-            
+
             <tr>
               <td><strong>{{ $t('difficulty') }}</strong></td>
               <td>
                 {{ $n(item['difficulty']) }}              </td>
-            
+
               <td><strong>{{ $t('description') }}</strong></td>
               <td>
                                     {{ item['description'] }}
               </td>
             </tr>
-            
+
             <tr>
               <td><strong>{{ $t('category') }}</strong></td>
               <td>
                                     {{ item['category'].name }}
               </td>
-            
+
               <td></td>
             </tr>
-            
+
           </tbody>
         </template>
       </v-simple-table>
@@ -66,9 +66,9 @@
 <script>
 import { mapActions, mapGetters } from 'vuex';
 import { mapFields } from 'vuex-map-fields';
-import Loading from '../../components/Loading';
-import ShowMixin from '../../mixins/ShowMixin';
-import Toolbar from '../../components/Toolbar';
+import Loading from '../../../components/Loading';
+import ShowMixin from '../../../mixins/ShowMixin';
+import Toolbar from '../../../components/Toolbar';
 
 const servicePrefix = 'JeuxDeLaVieTache';
 

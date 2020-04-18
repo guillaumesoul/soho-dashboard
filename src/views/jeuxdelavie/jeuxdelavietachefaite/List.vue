@@ -1,15 +1,15 @@
 <template>
-  <div class="jeuxdelavietache-list">
+  <div class="jeuxdelavietachefaite-list">
     <Toolbar :handle-add="addHandler" />
 
     <v-container grid-list-xl fluid>
       <v-layout row wrap>
         <v-flex sm12>
-          <h1>JeuxDeLaVieTache List</h1>
+          <h1>JeuxDeLaVieTacheFaite List</h1>
         </v-flex>
         <v-flex lg12>
           <DataFilter :handle-filter="onSendFilter" :handle-reset="resetFilter">
-            <JeuxDeLaVieTacheFilterForm
+            <JeuxDeLaVieTacheFaiteFilterForm
               ref="filterForm"
               :values="filters"
               slot="filter"
@@ -32,11 +32,14 @@
             show-select
             @update:options="onUpdateOptions"
           >
-                <template slot="item.dateCreation" slot-scope="{ item }">
-                  {{ formatDateTime(item['dateCreation'], 'long') }}
+                <template slot="item.duration" slot-scope="{ item }">
+                  {{ $n(item['duration']) }}
                 </template>
-                <template slot="item.difficulty" slot-scope="{ item }">
-                  {{ $n(item['difficulty']) }}
+                <template slot="item.dateEnregistrement" slot-scope="{ item }">
+                  {{ formatDateTime(item['dateEnregistrement'], 'long') }}
+                </template>
+                <template slot="item.dateRealisationTache" slot-scope="{ item }">
+                  {{ formatDateTime(item['dateRealisationTache'], 'long') }}
                 </template>
 
             <ActionCell
@@ -56,30 +59,31 @@
 <script>
 import { mapActions, mapGetters } from 'vuex';
 import { mapFields } from 'vuex-map-fields';
-import ListMixin from '../../mixins/ListMixin';
-import ActionCell from '../../components/ActionCell';
-import JeuxDeLaVieTacheFilterForm from '../../components/jeuxdelavietache/Filter';
-import DataFilter from '../../components/DataFilter';
-import Toolbar from '../../components/Toolbar';
+import ListMixin from '../../../mixins/ListMixin';
+import ActionCell from '../../../components/ActionCell';
+import JeuxDeLaVieTacheFaiteFilterForm from '../../../components/jeuxdelavietachefaite/Filter';
+import DataFilter from '../../../components/DataFilter';
+import Toolbar from '../../../components/Toolbar';
 
 export default {
-  name: 'JeuxDeLaVieTacheList',
-  servicePrefix: 'JeuxDeLaVieTache',
+  name: 'JeuxDeLaVieTacheFaiteList',
+  servicePrefix: 'JeuxDeLaVieTacheFaite',
   mixins: [ListMixin],
   components: {
     Toolbar,
     ActionCell,
-    JeuxDeLaVieTacheFilterForm,
+    JeuxDeLaVieTacheFaiteFilterForm,
     DataFilter
   },
   data() {
     return {
       headers: [
-        { text: 'name', value: 'name' },
-        { text: 'dateCreation', value: 'dateCreation' },
-        { text: 'difficulty', value: 'difficulty' },
-        { text: 'description', value: 'description' },
-        { text: 'category', value: 'category' },
+        { text: 'tache', value: 'tache' },
+        { text: 'user', value: 'user' },
+        { text: 'duration', value: 'duration' },
+        { text: 'dateEnregistrement', value: 'dateEnregistrement' },
+        { text: 'dateRealisationTache', value: 'dateRealisationTache' },
+        { text: 'observation', value: 'observation' },
         {
           text: 'Actions',
           value: 'action',
@@ -90,10 +94,10 @@ export default {
     };
   },
   computed: {
-    ...mapGetters('jeuxdelavietache', {
+    ...mapGetters('jeuxdelavietachefaite', {
       items: 'list'
     }),
-    ...mapFields('jeuxdelavietache', {
+    ...mapFields('jeuxdelavietachefaite', {
       deletedItem: 'deleted',
       error: 'error',
       isLoading: 'isLoading',
@@ -103,7 +107,7 @@ export default {
     })
   },
   methods: {
-    ...mapActions('jeuxdelavietache', {
+    ...mapActions('jeuxdelavietachefaite', {
       getPage: 'fetchAll',
       deleteItem: 'del'
     })
