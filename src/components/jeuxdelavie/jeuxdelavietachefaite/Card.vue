@@ -5,13 +5,15 @@
       <v-card-title>{{tache.name}}</v-card-title>
       <v-card-text></v-card-text>
       <v-card-actions>
-        <v-btn text>Cancel</v-btn>
-        <v-btn text>Plus</v-btn>
+        <router-link :to="{ name: 'JeuxDeLaVieTacheFaiteCreate'}">
+          <v-btn color="success"><v-icon>mdi-check-circle</v-icon></v-btn>
+        </router-link>
       </v-card-actions>
     </v-card>
 </template>
 
 <script>
+  import mdiCheckCircle from '@mdi/js'
   export default {
     name: 'Card',
     props: {

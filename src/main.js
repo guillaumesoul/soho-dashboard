@@ -7,12 +7,13 @@ import './plugins'
 import vuetify from './plugins/vuetify'
 import { sync } from 'vuex-router-sync'
 import i18n from './i18n'
+import axios from 'axios'
 
 sync(store, router)
 
 Vue.config.productionTip = false
 
-Vue.use(Vuelidate);
+Vue.use(Vuelidate)
 
 new Vue({
   i18n,

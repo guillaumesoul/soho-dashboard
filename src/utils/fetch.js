@@ -21,6 +21,12 @@ export default function(id, options = {}) {
   )
     options.headers.set('Content-Type', MIME_TYPE);
 
+  // ajout du token en headers pour assurer l'authentification a l'appel des ressources
+  const token = localStorage.getItem("user-token");
+  if (token) {
+    options.headers.set("Authorization", 'Bearer ' + token);
+  }
+
   if (options.params) {
     let queryString = Object.keys(options.params)
       .map(key =>
