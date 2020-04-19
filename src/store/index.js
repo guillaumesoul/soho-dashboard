@@ -1,6 +1,7 @@
 // Lib imports
 import Vue from 'vue'
 import Vuex from 'vuex'
+import createPersistedState from "vuex-persistedstate";
 
 // Store functionality
 import makeCrudModule from './crud'
@@ -32,6 +33,7 @@ const store = new Vuex.Store({
       service: jeuxdelavietachefaiteService
     })
   },
+  plugins: [createPersistedState()],
   strict: process.env.NODE_ENV !== 'production'
 })
 

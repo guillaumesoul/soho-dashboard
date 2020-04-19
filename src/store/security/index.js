@@ -20,6 +20,7 @@ export default {
   getters: {
     isAuthenticated: state => !!state.token,
     authStatus: state => state.status,
+    currentUser: state => state.current_user
   },
   mutations: {
     [AUTH_REQUEST]: (state) => {
@@ -28,7 +29,7 @@ export default {
     [AUTH_SUCCESS]: (state, data) => {
       state.status = 'success';
       state.token = data.data.token;
-      state.current_user = data.data.user;
+      //state.current_user = data.data.user;
     },
     [AUTH_ERROR]: (state) => {
       state.status = 'error'
@@ -38,8 +39,8 @@ export default {
       localStorage.removeItem('user-token');
       router.push('/login')
     },
-    [USER_SUCCESS]: (state, user) => {
-      state.user = {}
+    [USER_SUCCESS]: (state, userApiResp) => {
+      state.current_user = userApiResp.data
     }
   },
   actions: {
@@ -55,7 +56,7 @@ export default {
             if (resp.data.token !== undefined) localStorage.setItem('user-token', resp.data.token)
             // Here set the header of your ajax library to the token value.
             commit(AUTH_SUCCESS, resp)
-            //dispatch(USER_REQUEST);
+            dispatch(USER_REQUEST, resp.data);
             resolve(resp)
           })
           .catch(err => {
@@ -72,18 +73,16 @@ export default {
         resolve();
       });
     },
-    [USER_REQUEST]: ({ commit }) => {
+    [USER_REQUEST]: ({ commit }, authResponse) => {
       return new Promise(resolve => {
         axios
-          .get(BACKEND_URL + 'user_connecte')
+          .get(BACKEND_URL + 'api/users/' + authResponse.user.id,
+            {headers: {'Authorization': 'Bearer ' + authResponse.token}})
           .then(resp => {
-            console.log(resp)
-            //commit(USER_SUCCESS, resp)
+            commit(USER_SUCCESS, resp)
             resolve(resp)
           })
           .catch(err => {
-            commit(AUTH_ERROR, err);
-            localStorage.removeItem("user-token");
             reject(err);
           });
       });

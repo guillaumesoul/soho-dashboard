@@ -15,7 +15,7 @@
 </template>
 
 <script>
-  import { mapActions } from 'vuex'
+  import { mapActions, mapGetters } from 'vuex'
   import { createHelpers } from 'vuex-map-fields'
   import JeuxDeLaVieTacheFaiteForm from '../../../components/jeuxdelavie/jeuxdelavietachefaite/Form'
   import Loading from '../../../components/Loading'
@@ -51,9 +51,12 @@
     },
     computed: {
       ...mapFields(['error', 'isLoading', 'created', 'violations']),
+      ...mapGetters(['currentUser']),
       initialValues: function () {
-        if (this.tache !== undefined) return { tache: this.tache }
-        return {}
+        let tacheFaite = {}
+        if (this.tache !== undefined) tacheFaite.tache = this.tache
+        if (this.currentUser !== undefined) tacheFaite.user = this.currentUser
+        return tacheFaite
       }
     },
     methods: {
