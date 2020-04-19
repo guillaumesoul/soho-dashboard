@@ -5,7 +5,7 @@
       <v-card-title>{{tache.name}}</v-card-title>
       <v-card-text></v-card-text>
       <v-card-actions>
-        <router-link :to="{ name: 'JeuxDeLaVieTacheFaiteCreate'}">
+        <router-link :to="{ name: 'JeuxDeLaVieTacheFaiteCreate', params: { tache: tache }}">
           <v-btn color="success"><v-icon>mdi-check-circle</v-icon></v-btn>
         </router-link>
       </v-card-actions>

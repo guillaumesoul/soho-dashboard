@@ -12,7 +12,8 @@ export default {
     {
       name: 'JeuxDeLaVieTacheFaiteCreate',
       path: 'new',
-      component: () => import('../../views/jeuxdelavie/jeuxdelavietachefaite/Create')
+      component: () => import('../../views/jeuxdelavie/jeuxdelavietachefaite/Create'),
+      props: true
     },
     {
       name: 'JeuxDeLaVieTacheFaiteUpdate',
