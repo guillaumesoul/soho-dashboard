@@ -3,9 +3,10 @@ const AUTH_SUCCESS = "AUTH_SUCCESS";
 const AUTH_ERROR = "AUTH_ERROR";
 const AUTH_LOGOUT = "AUTH_LOGOUT";
 const USER_REQUEST = "USER_REQUEST";
+const USER_SUCCESS = "USER_SUCCESS";
 
-import axios from 'axios';
-import { BACKEND_URL_LOGIN } from '../../config/entrypoint';
+import axios from 'axios'
+import { BACKEND_URL } from '../../config/entrypoint'
 
 import router from '../../router'
 
@@ -14,6 +15,7 @@ export default {
   state: {
     token: localStorage.getItem('user-token') || '',
     status: '',
+    current_user: {}
   },
   getters: {
     isAuthenticated: state => !!state.token,
@@ -23,9 +25,10 @@ export default {
     [AUTH_REQUEST]: (state) => {
       state.status = 'loading';
     },
-    [AUTH_SUCCESS]: (state, token) => {
+    [AUTH_SUCCESS]: (state, data) => {
       state.status = 'success';
-      state.token = token;
+      state.token = data.data.token;
+      state.current_user = data.data.user;
     },
     [AUTH_ERROR]: (state) => {
       state.status = 'error'
@@ -35,18 +38,20 @@ export default {
       localStorage.removeItem('user-token');
       router.push('/login')
     },
+    [USER_SUCCESS]: (state, user) => {
+      state.user = {}
+    }
   },
   actions: {
     [AUTH_REQUEST]: ({ commit, dispatch }, user) => {
       return new Promise((resolve, reject) => {
         commit(AUTH_REQUEST);
         axios
-          .post(BACKEND_URL_LOGIN, {
+          .post(BACKEND_URL+'login', {
             email: user.email,
             password: user.password
           })
           .then(resp => {
-            console.log(resp)
             if (resp.data.token !== undefined) localStorage.setItem('user-token', resp.data.token)
             // Here set the header of your ajax library to the token value.
             commit(AUTH_SUCCESS, resp)
@@ -65,6 +70,22 @@ export default {
         commit(AUTH_LOGOUT);
         localStorage.removeItem("user-token");
         resolve();
+      });
+    },
+    [USER_REQUEST]: ({ commit }) => {
+      return new Promise(resolve => {
+        axios
+          .get(BACKEND_URL + 'user_connecte')
+          .then(resp => {
+            console.log(resp)
+            //commit(USER_SUCCESS, resp)
+            resolve(resp)
+          })
+          .catch(err => {
+            commit(AUTH_ERROR, err);
+            localStorage.removeItem("user-token");
+            reject(err);
+          });
       });
     }
   }

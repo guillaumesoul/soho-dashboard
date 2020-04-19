@@ -19,11 +19,11 @@ const store = new Vuex.Store({
     notifications,
     security,
     dashboard,
-    jeuxdelavietache: makeCrudModule({
-      service: jeuxdelavietacheService
-    }),
     user: makeCrudModule({
       service: userService
+    }),
+    jeuxdelavietache: makeCrudModule({
+      service: jeuxdelavietacheService
     }),
     jeuxdelaviecategory: makeCrudModule({
       service: jeuxdelaviecategoryService

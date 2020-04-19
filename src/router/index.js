@@ -16,6 +16,7 @@ import store from '../store'
 // Routes
 import security from './security'
 import paths from './paths'
+import userRoutes from './user'
 import jeuxdelavieRoutes from './jeuxdelavie'
 
 function route (path, view, name) {
@@ -35,6 +36,7 @@ const router = new Router({
   mode: 'history',
   routes: paths.map(path => route(path.path, path.view, path.name)).concat([
     { path: '*', redirect: '/' },
+    userRoutes,
     jeuxdelavieRoutes,
     security
   ]),

@@ -1,7 +1,7 @@
 const ENTRYPOINT = 'http://bookshop.localhost/api/'
-const BACKEND_URL_LOGIN = 'http://bookshop.localhost/login'
+const BACKEND_URL = 'http://bookshop.localhost/'
 
 export {
   ENTRYPOINT,
-  BACKEND_URL_LOGIN
+  BACKEND_URL
 }
